@@ -29,6 +29,17 @@ api.get('/vehicles', (req, res) => {
 
 })
 
+api.get('/vehicle', (req, res) => {
+
+  const sql = `SELECT * FROM vehicles WHERE idvehicles = ${req.query.idvehicles}`;
+
+  pool.query(sql, function (err, result){
+    if (err) throw err;
+    res.send(result);
+  });
+
+})
+
 api.post('/newvehicle', (req, res) => {
 
   const sql = `INSERT INTO vehicles (make, model, color, year) values ("${req.query.make}", "${req.query.model}", "${req.query.color}", ${req.query.year})`;
