@@ -18,6 +18,8 @@ const HOST = 'localhost';
 
 const PORT = 8888;
 
+// Vehicles methods
+
 api.get('/vehicles', (req, res) => {
 
   const sql = `SELECT * FROM vehicles`;
@@ -86,6 +88,25 @@ api.post('/vehicle', (req, res) => {
       if (err) throw err;
       res.send(result);
     });
+
+})
+
+// Waypoint methods
+
+api.get('/waypoints', (req, res) =>{
+  const select = `SELECT * FROM waypoints;`;
+  pool.query(select, function (err, result){
+    if(err) throw err;
+    res.send(result);
+  })
+})
+
+api.get('/waypoint', (req, res) => {
+    const select = `SELECT * FROM waypoints WHERE idwaypoints = ${req.query.idwaypoints} ;`;
+    pool.query(select, function (err, result){
+      if(err) throw err;
+      res.send(result);
+  })
 
 })
 
