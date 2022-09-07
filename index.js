@@ -104,12 +104,19 @@ api.get('/waypoints', (req, res) =>{
 
 api.get('/waypoint', (req, res) => {
     const select = `SELECT * FROM waypoints WHERE vehicle=${req.query.vehicle} and time between ${req.query.start_date} and ${req.query.end_date} order by time desc;`;
-
     pool.query(select, function (err, result){
       if(err) throw err;
       res.send(result);
   })
+})
 
+api.post('/vehicle_waypoint', (req, res) =>{
+  const insert = `INSERT INTO waypoints (latitude, longitude, speed, vehicle, time) values (${req.query.latitude}, ${req.query.longitude}, ${req.query.speed}, ${req.query.vehicle}, ${req.query.time}); `;
+  pool.query(insert, function(err, result){
+    if(err) throw err;
+    res.send(result);
+  })
+  //http://localhost:8888/vehicle_waypoint?latitude=33.650000&longitude=-117.890000&speed=33&vehicle=1&time='2022-09-01 08:25:33'
 })
 
 api.listen(PORT, ()=>{
