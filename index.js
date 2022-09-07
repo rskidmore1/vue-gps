@@ -94,7 +94,7 @@ api.post('/vehicle', (req, res) => {
 // Waypoint methods
 
 api.get('/waypoints', (req, res) =>{
-  const select = `SELECT * FROM waypoints;`;
+  const select = `SELECT * FROM waypoints WHERE time between ${req.query.start_date} and ${req.query.end_date} order by time desc;`;
   pool.query(select, function (err, result){
     if(err) throw err;
     res.send(result);
