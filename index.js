@@ -78,7 +78,7 @@ const updateQuery = `UPDATE vehicles SET make = '${make}', model = '${model}', y
 
 })
 
-api.post('/newvehicle', (req, res) => {
+api.post('/vehicle', (req, res) => {
 
   const sql = `INSERT INTO vehicles (make, model, color, year) values ("${req.query.make}", "${req.query.model}", "${req.query.color}", ${req.query.year})`;
 
