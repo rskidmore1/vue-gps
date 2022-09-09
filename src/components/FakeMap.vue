@@ -3,7 +3,7 @@
     name: "FakeMap",
     data(){
       return {
-        picUrl: '',
+        mapImageUrl: 'map1.png',
       }
     },
       mounted() {
@@ -13,8 +13,18 @@
         // .then((data) => console.log(data));
       },
     methods: {
-      doSomething(){
-        console.log('hi from the function')
+      changeImage(){
+        //change iamgeurl
+        if(this.mapImageUrl === 'map1.png'){
+          this.mapImageUrl = 'map2.png';
+          return this.mapImageUrl;
+        } else if (this.mapImageUrl === 'map2.png'){
+          this.mapImageUrl = 'map3.png';
+          return this.mapImageUrl;
+        } else if (this.mapImageUrl === 'map3.png'){
+          this.mapImageUrl = 'map1.png';
+          return this.mapImageUrl;
+        }
       }
 
     }
@@ -23,6 +33,7 @@
 
 <template>
   <p>{{someVar}}</p>
-  <button @click="doSomething">hello</button>
-  <img src="../images/map1.png" />
+  <button @click="changeImage">Change Image</button>
+  <img :src="'/src/images/' + mapImageUrl" />
+  <!-- <img src="../images/map1.png" /> -->
 </template>
