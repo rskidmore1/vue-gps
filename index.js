@@ -1,4 +1,5 @@
 let mysql = require('mysql');
+let cors = require('cors');
 
 
 const pool = mysql.createPool({
@@ -13,6 +14,8 @@ const pool = mysql.createPool({
 const express = require('express');
 
 const api = express();
+api.use(cors())
+api.options('*', cors())
 
 const HOST = 'localhost';
 
@@ -117,6 +120,17 @@ api.post('/vehicle_waypoint', (req, res) =>{
     res.send(result);
   })
   //http://localhost:8888/vehicle_waypoint?latitude=33.650000&longitude=-117.890000&speed=33&vehicle=1&time='2022-09-01 08:25:33'
+})
+
+api.get('/map_image', (req, res)=>{
+    // res.send(req.query.idmap_images)
+    // const select = `SELECT * FROM map_images WHERE idmap_images=${req.query.idmap_images};`;
+    // pool.query(select, function(err, result){
+    //   if(err) throw err;
+    //   res.send(result)
+    // })
+    res.send('An api end point')
+
 })
 
 api.listen(PORT, ()=>{

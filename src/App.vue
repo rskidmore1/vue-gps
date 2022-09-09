@@ -1,3 +1,8 @@
+<script setup>
+import FakeMap from './components/FakeMap.vue';
+
+</script>
+
 <template>
   <header>
     <div>
@@ -7,5 +12,6 @@
 
   <main>
     <p>vue me</p>
+    <FakeMap />
   </main>
 </template>
